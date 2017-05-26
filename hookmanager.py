@@ -14,11 +14,11 @@ class HookManager():
         self.bv = bv
         self.rawbv = bv.parent_view
 
-        self.parse_binary()
-
 
     def install_hook(self, hook):
         assert hook.is_assembled(), "Invalid Hookstate"
+
+        self.parse_binary()
 
         code_start_addr = self.make_space(hook.code_length())
         if not code_start_addr:
