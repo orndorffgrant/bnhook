@@ -47,23 +47,6 @@ class Hook():
     def is_installed(self):
         return self._state is HookState.INSTALLED
 
-    def parse_asm_file(self, asm_file_name):
-        assert self.is_new(), "Invalid Hookstate"
-
-        with open(asm_file_name) as asm_file:
-            for i, line in enumerate(asm_file):
-                line_bytes, err = self.arch.assemble(line)
-                empty_err = 'Empty output from assembler\n'
-                if err == empty_err:
-                    continue
-                if err:
-                    show_message_box('Assemble fail', 'Assembly of line {} failed:\n\n{}\n\nError: {}\n'.format(i+1, line, err), icon=MessageBoxIcon.ErrorIcon)
-                    return False
-                self.code_bytes += line_bytes
-
-        self._state = HookState.ASSEMBLED
-        return True
-
 
     def parse_asm_string(self, asm_string):
         assert self.is_new(), "Invalid Hookstate"

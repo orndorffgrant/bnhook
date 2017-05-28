@@ -22,14 +22,13 @@ def insert_hook(bv, addr):
     if asm_input.result == 0:
         asm_file_name = get_open_filename_input('asm file')
         if not asm_file_name:
-            show_message_box('File Fail', 'Unable to open file.', icon=MessageBoxIcon.ErrorIcon)
             return False
-        ok = hook.parse_asm_file(asm_file_name)
+        with open(asm_file_name) as asm_file:
+            ok = hook.parse_asm_string(asm_file.read())
     else:
         asm_string = MultilineTextField('')
         ok = get_form_input([asm_string], 'asm code')
         if not ok:
-            show_message_box('Form Fail', 'The form returned an error.', icon=MessageBoxIcon.ErrorIcon)
             return False
         ok = hook.parse_asm_string(asm_string.result)
 
