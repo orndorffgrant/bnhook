@@ -1,22 +1,26 @@
 {
-	"plugin": {
-		"name": "BNHook",
-		"type": ["core", "ui" ],
-		"api": "python2",
-		"description": "Insert custom hooks",
-		"longdescription": "Currently supports x86 and x86_64 ELF executables.\nWrite a hook in assembly and have it execute as part of your binary. See your hook added to the binary and reflected in the disassembly graph. The code segment of the binary is extended to make room for the hook. After insertion, Save Contents As and run the binary with your inserted code!",
-		"license": {
-			"name": "MIT",
-			"text": "Copyright (c) 2017 Grant Orndorff\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
-		},
-		"dependencies": {
-			"pip": ["filebytes"]
-		},
-		"version": "1.0 alpha",
-		"author": "Grant Orndorff",
-		"minimumBinaryNinjaVersion": {
-			"dev": "1.0.dev-576",
-			"release": "1.0.13"
-		}
-	}
+	"pluginmetadataversion": 2,
+	"name": "BNHook",
+	"type": ["core", "ui" ],
+	"api": ["python2", "python3"],
+	"description": "Insert custom hooks",
+	"longdescription": "Currently supports x86 and x86_64 ELF executables.\nWrite a hook in assembly and have it execute as part of your binary. See your hook added to the binary and reflected in the disassembly graph. The code segment of the binary is extended to make room for the hook. After insertion, Save Contents As and run the binary with your inserted code!",
+	"license": {
+		"name": "MIT",
+		"text": "Copyright (c) 2017 Grant Orndorff\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
+
+	},
+	"platforms": ["Windows", "Linux", "Darwin"],
+	"installinstructions" : {
+		"Windows":"pip install filebytes or pip3 install filebytes",
+		"Linux":"pip install filebytes or pip3 install filebytes",
+		"Darwin":"pip install filebytes or pip3 install filebytes"
+	},
+	"dependencies": {
+		"pip": ["filebytes"]
+	},
+	"version": "1.1",
+	"author": "Grant Orndorff",
+	"minimumbinaryninjaversion": 1407
 }
+
