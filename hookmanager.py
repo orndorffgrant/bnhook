@@ -4,6 +4,15 @@ from binaryninja.enums import MessageBoxIcon
 from filebytes.elf import ELF, PT, PF
 
 from .hook import Hook
+import sys
+
+PY2 = sys.version_info[0] == 2
+PY3 = sys.version_info[0] == 3
+PY34 = sys.version_info[0:2] >= (3, 4)
+
+
+if PY3:
+    buffer=bytes
 
 
 class HookManager():
@@ -76,7 +85,7 @@ class ElfHookManager(HookManager):
         self.rawbv.write(e_header.e_phoff + (e_header.e_phentsize * self.text_seg_index), buffer(self.text_seg.header)[:])
 
         self.bv.add_auto_segment(self.text_seg.header.p_vaddr, self.text_seg.header.p_memsz, self.text_seg.header.p_offset, self.text_seg.header.p_memsz, 5)
-        
+
         return code_start_addr
 
 

@@ -1,6 +1,7 @@
 from binaryninja.interaction import show_message_box
 from binaryninja import enum
 from binaryninja.enums import MessageBoxIcon
+import sys
 
 
 class HookState(enum.IntEnum):
@@ -51,8 +52,10 @@ class Hook():
     def parse_asm_string(self, asm_string):
         assert self.is_new(), "Invalid Hookstate"
 
-        asm_bytes, err = self.arch.assemble(asm_string)
-        if err:
+        try:
+            asm_bytes = self.arch.assemble(asm_string)
+        except:
+            err = sys.exc_info()[0]
             show_message_box('Assemble fail', 'Assembly of string failed:\n\n{}\n\nError: {}\n'.format(asm_string, err), icon=MessageBoxIcon.ErrorIcon)
             return False
 
@@ -72,14 +75,18 @@ class Hook():
 
         self.code_start_addr = code_start_addr
         hook_str = self.get_hook_format().format(self.code_start_addr - self.hook_addr)
-        self.hook_bytes, err = self.arch.assemble(hook_str)
-        if err:
+        try:
+            self.hook_bytes = self.arch.assemble(hook_str)
+        except:
+            err = sys.exc_info()[0]
             show_message_box('Assemble fail', 'Assembly of string failed:\n\n{}\n\nError: {}\n'.format(hook_str, err), icon=MessageBoxIcon.ErrorIcon)
             return False
 
         ret_str = self.get_hook_format().format(self.ret_addr - (self.code_start_addr + self.code_length()) + self.get_hook_len())
-        self.ret_bytes, err = self.arch.assemble(ret_str)
-        if err:
+        try:
+            self.ret_bytes = self.arch.assemble(ret_str)
+        except:
+            err = sys.exc_info()[0]
             show_message_box('Assemble fail', 'Assembly of string failed:\n\n{}\n\nError: {}\n'.format(ret_str, err), icon=MessageBoxIcon.ErrorIcon)
             return False
 
@@ -105,7 +112,7 @@ class Hook():
     def get_hook_len(self):
         raise NotImplementedError()
 
-        
+
 
 
 class x86Hook(Hook):
