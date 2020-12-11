@@ -1,3 +1,5 @@
+# This repo is no longer maintained. Please use [this fork](https://github.com/jeffli678/bnhook) instead. Thank you [jeffli678](https://github.com/jeffli678) for adopting this plugin :)
+
 # BNHook (v1.1)
 Author: **Grant Orndorff**
 _Insert custom hooks_
